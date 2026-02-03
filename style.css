@@ -1,0 +1,1401 @@
+
+
+/*Сброс стилей и врап*/
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0; 
+  font-family: Montserrat, sans-serif; 
+  background-color: whitesmoke;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5 {
+    font-size: inherit;
+    margin: 0;
+}
+
+h3 {
+    font-size: 30px;
+    color: #343431;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  transition: transform 0.1s ease;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -10;
+  width: 120px;
+  height: 120px;
+  opacity: 0;
+}
+
+.loader img {
+  width: 100%;
+  height: 100%;
+}
+
+.loader-on {
+  opacity: 1;
+  z-index: 10;
+}
+
+.header-popup__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: -3;
+  opacity: 0;
+}
+
+.header-popup__overlay--active {
+  z-index: 3;
+  opacity: 1;
+}
+
+.wrap {
+  max-width: 1400px;
+  width: 100%;
+  margin: auto;
+}
+
+.site-section {
+  padding: 50px 60px;
+}
+
+/*попап*/
+
+.popup-response-ok__overlay {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-response-ok {
+  max-width: 360px;
+  width: 100%;
+  height: 300px;
+  background-color: #e8e3d6;
+  position: relative;
+  padding: 25px 20px;
+}
+
+.popup-response-ok__icon {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 3px solid #e6903e;
+  background-image: url('img/popup-icon.png');
+  background-size: 70% 70%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: auto;
+}
+
+.popup-response-ok__title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  margin-top: 32px;
+}
+
+.popup-response-ok__subtitle {
+  text-align: center;
+  margin: 0;
+  margin-top: 8px;
+}
+
+.popup__close-wrap {
+  text-align: center;
+  width: calc(100% - 40px);
+  height: 40px;
+  position: absolute;
+  bottom: 20px;
+}
+
+.popup__close {
+  width: 85px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background-color: #e6903e;
+  font-size: 21px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.popup-response-ok__overlay--active {
+  opacity: 1;
+  z-index: 4;
+}
+
+.form-site {
+  position: fixed;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 360px;
+  width: 100%;
+  background-color: whitesmoke;
+  padding: 35px 30px;
+}
+
+.form-close {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+  right: 2px;
+  top: 4px;
+  cursor: pointer;
+  background-color: whitesmoke;
+  color: grey;
+  opacity: 0;
+}
+
+/*Секция хейдер*/
+
+.header {
+  width: 100%;
+  padding: 20px 60px 50px;
+  background-color: white;
+}
+
+.header__mobile-nav-wrap {
+  position: relative;
+  display: none;
+}
+
+.header__mobile-nav {
+  width: 44px;
+  height: 44px;
+  background-color: lightgray;
+  border-radius: 50%;
+  position: relative;
+  border: none;
+  cursor: pointer;
+}
+
+.header__mobile-nav::before {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 4px;
+  background-color: grey;
+  top: 15px;
+  left: 20%;
+}
+
+.header__mobile-nav::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 4px;
+  background-color: grey;
+  top: 25px;
+  left: 20%;
+}
+
+.header__mobile-nav-list {
+  position: fixed;
+  left: calc(100% - 196px);
+  top: 87px;
+  width: 180px;
+  background-color: white;
+  z-index: 10;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header__mobile-nav-list--active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.header__top {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__title {
+    font-size: 22px;
+    color: #343431;
+}
+
+.header__title span {
+    color: #e6903e;
+    font-size: 23px;
+}
+
+.header__nav {
+  display: flex;
+  gap: 20px; 
+  font-weight: 700;
+  color: grey; 
+  font-size: 16px;
+  align-items: center;
+}
+
+.header__nav a {
+  transition: color 0.4s ease; 
+}
+
+
+.header__nav a:hover {
+  color: #e6903e;
+}
+
+.header__img-wrap {
+  width: 100%;
+  height: 615px;
+  position: relative;
+}
+
+.header__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header__img-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.header__slogan {
+  position: absolute;
+  left: 20px;
+  bottom: 35px;
+  z-index: 2;
+  color: white;
+  font-size: 48px;
+  font-weight: 800;
+  width: calc(100% - 40px);
+}
+
+.header__slogan-subtitle {
+    font-size: 20px;
+    margin: 0;
+    margin-top: 7px;
+}
+
+.feature {
+  white-space: nowrap;
+  margin-right: 0.5em;
+}
+
+.header__button {
+  background-color: #e6903e;
+  width: 170px;
+  height: 43px;
+  color: white;
+  border-radius: 10px;
+  margin-top: 15px;
+  font-size: 18px;
+  border: 2px solid grey;
+  cursor: pointer;
+}
+
+/*Секция процесс и виды работ*/
+
+.how-we-work {
+    background-color: #e8e3d6;
+}
+
+.how-we-work__services {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.how-we-work__service {
+    background-color: #f3f3e9;
+    width: calc(16.66% - 20.9px);
+    padding: 15px;
+}
+
+.how-we-work__icon-wrap {
+    width: 100%;
+    height: 145px;
+    object-fit: contain;
+}
+
+.how-we-work__icon {
+    width: 100%;
+    height: 100%;
+}
+
+.how-we-work__text {
+    color: #7e7b78;
+    font-size: 18px;
+    text-align: center;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.title-steps {
+    margin: 40px 0;
+}
+
+.how-we-work__steps {
+    padding: 10px;
+    background-color: #f3f3e9;
+    display: flex;
+    gap: 25px;
+}
+
+.how-we-work__step {
+    width: calc(20% - 20px);
+    padding: 15px 25px 0;
+}
+
+.how-we-work__step:nth-child(-n + 4) .how-we-work__step-icon::before {
+  content: "➝";
+  position: absolute;
+  top: 50%;
+  right: -100px;
+  transform: translate(-50%, -50%);
+  font-size: 60px;
+  color: #e6903e;
+}
+
+.how-we-work__step-icon {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 5px solid #e6903e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.how-we-work__step-text {
+    color: #7e7b78;
+    font-size: 18px;
+    text-align: center;
+}
+
+.how-we-work__step-icon-img {
+    width: 73%;
+    height: 73%;
+}
+
+/*секция калькулятор*/
+
+/*тип балкона*/
+
+.cost-calculator {
+  background-color: white;
+}
+
+.cost-calculator__steps {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.cost-calculator__step {
+  width: 6.5%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 3px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cost-calculator__step-icon {
+  width: 52%;
+  height: 52%;
+}
+.cost-calculator__step--active {
+  background-color: #e6903e;
+  outline: 3px solid gray;
+  outline-offset: 4px;
+}
+
+.cost-calculator__content {
+  background-color: lightgray;
+  margin-top: 30px;
+  padding: 30px;
+  padding-bottom: 90px;
+  min-height: 395px;
+  position: relative;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.cost-calculator__content.fade-out {
+  opacity: 0;
+}
+
+.cost-calculator__title {
+  margin-bottom: 30px;
+}
+
+.cost-calculator__types {
+  display: flex;
+  gap: 30px;
+}
+
+.cost-calculator__type {
+  width: calc(20% - 24px);
+  background-color: white;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.cost-calculator__type--active {
+  outline: 4px solid #e6903e;
+  outline-offset: -4px;  
+}
+
+.cost-calculator__type-img-wrap {
+  height: 120px;
+  user-select: none;       
+  -webkit-user-select: none; 
+  -moz-user-select: none;    
+  -ms-user-select: none; 
+}
+
+.cost-calculator__type-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cost-calculator__type-text {
+  margin: 0;
+  margin-top: 20px;
+}
+
+.cost-calculator__nav {
+  margin-top: 40px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+.cost-calculator__btn {
+  width: 110px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-next {
+  background-color: #e6903e;  
+}
+
+.btn-back {
+  background-color: white;  
+}
+
+/*размер*/
+
+.cost-calculator__size-wrap {
+  display: flex;
+  gap: 15px;
+  min-height: 228px;
+  align-items: center;
+}
+
+.cost-calculator__size-input-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cost-calculator__size-input {
+  width: 100%;
+  height: 45px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  border: none;
+  -moz-appearance: textfield;
+}
+
+.cost-calculator__size-input::-webkit-inner-spin-button {
+  -webkit-appearance: none 
+}
+
+.cost-calculator__size-label {
+  padding-left: 4px;
+  font-size: 14px;  
+}
+
+/*Внутренняя отделка*/
+
+.cost-calculator__interior {
+  display: flex;
+  gap: 62px;
+}
+
+.cost-calculator__interior-item {
+  width: calc(33.33% - 42px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cost-calculator__interior-title {
+  margin: 0;
+  margin-top: 20px; 
+}
+
+.cost-calculator__interior-option {
+  height: 45px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  user-select: none;       
+  -webkit-user-select: none; 
+  -moz-user-select: none;    
+  -ms-user-select: none; 
+  padding-right: 3px;
+}
+
+.cost-calculator__interior-img {
+  width: 25%;
+  height: 100%;
+  object-fit: cover;  
+}
+
+.walls--no-active {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/*электрика*/
+
+.img--el {
+  width: 13.5%;
+  height: 70%;
+}
+
+/*итоговая стоимость*/
+
+.cost-calculator__estimat-wrap {
+  display: flex;
+  gap: 30px;
+  margin-top: 10px;
+  background-color: whitesmoke;
+  width: 60%;
+  padding: 10px;
+}
+
+.cost-calculator__estimat-summary {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cost-calculator__estimat {
+  font-size: 26px;
+  color: #e6903e;
+  font-weight: bold;
+  margin: 0;
+}
+
+.cost-calculator__estimat-list {
+  list-style: none;
+}
+
+.cost-calculator__estimat-list span{
+  font-weight: bold;
+}
+
+.cost-calculator__estimat-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
+}
+
+.cost-calculator__estimat-input {
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  padding: 2px 10px;  
+  background-color: #e8e3d6;;
+}
+
+.submit-btn {
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: #e6903e;
+  font-size: 20px; 
+  opacity: 0.7; 
+}
+
+
+.cost-calculator__estimat-textarea {
+  resize: none;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  height: 70px;
+  background-color: #e8e3d6;;
+}
+
+/*работы и отзывы*/
+
+.portfolio-reviews {
+  background-color: #e8e3d6;
+}
+
+.portfolio-reviews__portfolio-wrap {
+  display: flex;
+  gap: 30px;
+}
+
+.portfolio-reviews__portfolio {
+  width: calc(33.3% - 20px);
+  background-color: white;
+  padding: 20px;
+}
+
+.portfolio-reviews__portfolio-img-wrap {
+  display: flex;
+  gap: 6px;
+  height: 285px;
+}
+
+.portfolio-reviews__portfolio img {
+  width: calc(50% - 3px);
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-reviews__title {
+  margin-bottom: 30px;
+}
+
+.portfolio-reviews__portfolio-text {
+  text-align: center;
+  font-weight: bold;
+  font-size: 17px;
+  margin: 0;
+  margin-top: 8px;
+  color: DarkSlateGray;
+}
+
+.portfolio-reviews__portfolio-description {
+  color: DarkSlateGray;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 0;
+  margin-top: 8px;
+}
+
+.reviews-title {
+  margin-top: 30px;
+}
+
+.portfolio-reviews__reviews-wrap {
+  background-color: white;
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+ }
+
+.portfolio-reviews__reviews {
+  display: flex;
+  gap: 15px;
+  width: calc(33% - 20px);
+}
+
+.portfolio-reviews__reviews-img {
+  border-radius: 50%;
+  object-fit: cover;
+  height: 90px;
+  width: 90px;
+}
+
+.portfolio-reviews__reviews-name {
+  margin-top: 6px;
+}
+
+.portfolio-reviews__reviews-text {
+  margin: 0;
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+/*футер*/
+
+.footer {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 60px 40px;
+}
+
+.footer__title {
+  margin-bottom: 10px;
+}
+
+.footer__section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footer__contacts {
+  margin: 0;
+  font-size: 14px;
+}
+
+.footer__nav-item {
+  font-size: 14px;
+  position: relative;
+}
+
+.footer__nav-item::before {
+  content:'';
+  position: absolute;
+  top: 16px;
+  left: 0;
+  height: 1px;
+  width: 99%;
+  opacity: 0; 
+  transition: opacity 0.4s;
+  background-color: white;
+}
+
+.footer__nav-item:hover::before {
+  opacity: 1;
+}
+
+.footer__message {
+  display: flex;
+  gap: 10px;
+}
+
+.footer__message-icon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+/*медиазапросы*/
+
+@media (max-width: 1180px) {
+   .site-section {
+     padding: 40px;
+   }
+
+   .header {
+     padding: 20px 40px;
+   }
+
+   .footer {
+     padding: 30px 40px;
+   }
+
+   .how-we-work__service {
+     width: calc(33.3% - 16.67px);
+   }
+
+   .cost-calculator__interior {
+     gap: 46px;
+   }
+
+   .cost-calculator__interior-item {
+     width: calc(33.3% - 31px);
+   }
+
+   .cost-calculator__step {
+     width: 7.5%;
+   }
+
+   .cost-calculator__estimat-wrap {
+     width: 68%;
+   }
+
+   .cost-calculator__types {
+     gap: 20px;
+   }
+
+   .cost-calculator__type {
+     width: calc(20% - 16px);
+     padding: 10px 10px 15px;
+   }
+
+   .portfolio-reviews__portfolio {
+     padding: 10px;
+     width: calc(33.33% - 14px);
+   }
+
+   .portfolio-reviews__portfolio-wrap {
+     gap: 21px;
+   } 
+}
+
+@media (max-width: 980px) {
+   .site-section {
+     padding: 40px 30px;
+   }
+
+   .header {
+     padding: 20px 0 50px;
+   }
+   
+   .header__top {
+     padding: 0 30px;
+   }
+   
+   .header__img-wrap {
+     height: 580px;
+   }
+
+   .header__button {
+     margin-left: 30px;
+   }
+
+   .header__slogan {
+     left: 30px;
+     width: calc(100% - 60px);
+   }
+
+   .how-we-work__steps {
+     flex-wrap: wrap;
+     row-gap: 0;
+   }
+
+   .how-we-work__step {
+     width: 28.9%;
+     padding: 10px 25px;
+   }
+
+   .how-we-work__step-text {
+     margin: 0;
+     margin-top: 10px;
+   }
+   
+   .cost-calculator__step {
+     width: 9%;
+   }
+
+  .cost-calculator__types {
+     gap: 15px;
+   }
+
+   .cost-calculator__type {
+     width: calc(20% - 12px);
+     padding: 10px 10px 15px;
+   }
+
+   .cost-calculator__type-text {
+     font-size: 15px;
+   }
+
+   .cost-calculator__interior {
+     gap: 15px;
+   }
+
+   .cost-calculator__interior-item {
+     width: calc(33.3% - 10px);
+   }
+
+   .cost-calculator__estimat-wrap {
+     width: 100%;
+   }
+
+
+   .portfolio-reviews__reviews-wrap {
+     flex-wrap: wrap;
+   }
+
+   .portfolio-reviews__reviews {
+     width: calc(50% - 15px);
+   }
+}
+
+@media (max-width: 780px) {
+  .header__slogan {
+    width: 470px;
+  }
+
+  .header__slogan-subtitle {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .how-we-work__steps {
+    padding-right: 35px;
+  }
+
+  .cost-calculator__step {
+     width: 11%;
+   }
+
+  .cost-calculator__content {
+    min-height: 640px;
+  } 
+
+  .cost-calculator__types {
+    flex-wrap: wrap;
+  }
+
+  .cost-calculator__type {
+    width: calc(33% - 10px);
+  }
+
+  .cost-calculator__interior {
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+
+  .cost-calculator__interior-item {
+    width: calc(50% - 7.5px);
+  }
+
+  .cost-calculator__estimat-wrap {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .cost-calculator__estimat-summary {
+    width: 70%;
+  }
+
+  .cost-calculator__estimat-form {
+    width: 70%;
+  }
+
+  .cost-calculator__size-wrap {
+    flex-direction: column;
+    margin-top: 30px;
+    align-items: flex-start;
+  }
+
+  .cost-calculator__size-input-wrap {
+    width: 70%;
+  }
+
+  .portfolio-reviews__portfolio-wrap {
+    flex-wrap: wrap;
+  }
+
+  .portfolio-reviews__portfolio {
+    width: calc(50% - 15px);
+  }
+
+   .portfolio-reviews__reviews {
+     width: 100%;
+   }
+}
+
+@media (max-width: 680px) {
+  .site-section {
+    padding: 35px 24px;
+  }
+
+  .header__top {
+    padding: 0 24px;
+  }
+
+  .header__slogan {
+    left: 24px;
+  }
+
+  .how-we-work__steps {
+    padding-right: 40px;
+  }
+
+  .header__button {
+    margin-left: 24px;
+  }
+
+  .cost-calculator__content {
+    padding: 24px;
+  }
+
+  .cost-calculator__title {
+    margin-bottom: 24px;
+  } 
+
+  .portfolio-reviews__reviews-wrap {
+    padding: 10px;
+  }
+
+  .footer {
+    padding: 30px 24px;
+  }
+}
+
+@media (max-width: 625px) {
+  .how-we-work__steps {
+    flex-direction: column;
+    row-gap: 120px;
+    height: 850px;
+    align-items: center;
+    padding: 30px 0;
+  }
+
+  .how-we-work__step {
+    padding: 0;
+    height: 180px;
+  }
+
+  .how-we-work__step-icon {
+    width: 150px;
+    height: 150px;
+  }
+
+  .how-we-work__step:nth-child(-n + 4) .how-we-work__step-icon::before {
+    content: "↓";
+    top: 228px;
+    right: 24%;
+    font-size: 80px;
+  }
+
+  .how-we-work__step:nth-child(3) .how-we-work__step-icon::before {
+    content: '⤴';
+    top: 29%;
+    left: 112%;
+  }
+
+  .header__mobile-nav-wrap {
+    display: block;
+  }
+  
+  .header__nav > a {
+    display: none;
+  }
+
+ .footer {
+    padding: 28px 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+  }
+
+  .footer__section {
+    width: calc(50% - 10px); 
+    justify-content: center;
+  }
+
+  .footer-nav {
+    width: auto;
+  }
+
+  .footer-social {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .footer__message {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 540px) {
+  .header__img-wrap {
+    height: 420px;
+  }
+
+  .site-section {
+    padding: 35px 20px;
+  }
+
+  .header__top {
+    padding: 0 20px 12px;
+  }
+
+  .header__slogan {
+    left: 20px;
+    width: calc(100% - 40px);
+    font-size: 42px;
+  }
+
+  .header__slogan-subtitle {
+    font-size: 19px;
+  }
+
+  .header__button {
+    margin-left: 20px;
+  }
+
+  .cost-calculator__content {
+    padding: 20px;
+  }
+
+  .cost-calculator__title {
+    margin-bottom: 20px;
+  } 
+
+  .cost-calculator__step {
+    width: 14%;
+  }
+
+  .cost-calculator__estimat-summary {
+    width: 100%;
+  }
+
+  .cost-calculator__estimat-form {
+    width: 100%;
+  }
+  
+  .how-we-work__services {
+    gap: 20px;
+  }
+
+  .how-we-work__service {
+    width: calc(50% - 10px);
+  }
+
+  .portfolio-reviews__portfolio {
+    width: 100%;
+  }
+}
+
+@media (max-width: 470px) {
+
+  .site-section {
+    padding: 30px 15px;
+  }
+
+  .header__top {
+    padding: 0 15px 12px;
+  }
+
+  .header__slogan {
+    left: 15px;
+    width: calc(100% - 30px);
+  }
+
+  .header__button {
+    margin-left: 15px;
+  }
+
+  .how-we-work__steps {
+    row-gap: 85px;
+    margin: 0;
+    height: 770px;
+    padding: 10px;
+    column-gap: 0;
+  }
+
+  .how-we-work__step {
+    height: auto;
+    width: 140px;
+  }
+
+  .how-we-work__step-icon {
+    width: 100%;
+    height: 140px; 
+  }
+
+  .how-we-work__step:nth-child(-n + 4) .how-we-work__step-icon::before {
+    top: 220px;
+    right: 24%;
+    font-size: 70px;
+  }
+
+  .how-we-work__step:nth-child(3) .how-we-work__step-icon::before {
+    top: 29%;
+    left: 110%;
+  }
+
+  .how-we-work__services {
+    gap: 15px;
+  }
+
+  .how-we-work__service {
+    width: calc(50% - 7.5px);
+  }
+
+  .cost-calculator__step {
+    width: 15%;
+  }
+
+  .cost-calculator__type {
+    width: calc(50% - 7.5px);
+  }
+
+  .cost-calculator__type-img-wrap {
+    height: 100px;
+  }
+
+  .cost-calculator__content {
+    min-height: 672px;
+    font-size: 14px;
+    padding: 20px 15px;
+  }
+
+  .cost-calculator__btn {
+    width: 94px;
+    height: 35px;
+  }
+
+  .cost-calculator__nav {
+    right: 15px;
+    gap: 8px;
+  }
+
+  .cost-calculator__title {
+    margin-bottom: 20px;
+  }
+
+  .cost-calculator__interior-option {
+    gap: 8px;
+  }
+
+  .cost-calculator__estimat-wrap {
+    padding: 15px;
+  }
+
+  .footer__title {
+    margin-bottom: 5px;
+  }
+
+  .footer-social {
+    position: relative;
+    margin-top: 20px;
+  }
+
+  .footer-social::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    top: -13px;
+    left: 0;
+    background-color: #e6903e;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-section {
+    padding: 30px 10px;
+  }
+
+  .header__top {
+    padding: 0 10px 12px;
+  }
+
+  .header__slogan {
+    left: 10px;
+    width: calc(100% - 20px);
+  }
+
+  .header__slogan-title {
+    font-size: 36px;
+  }
+
+  .header__slogan-subtitle {
+    font-size: 18px;
+  }
+  
+  .header__button {
+    margin-left: 10px;
+  }
+
+  .how-we-work__services {
+    gap: 10px;
+  }
+
+  .how-we-work__service {
+    width: calc(50% - 5px);
+  }
+
+  .cost-calculator__content {
+    padding: 20px 10px;
+  }
+
+  .cost-calculator__interior {
+    gap: 10px;
+  }
+
+  .cost-calculator__interior-item  {
+    width: calc(50% - 5px);
+  }
+
+  .cost-calculator__estimat-wrap {
+    padding: 10px;
+  }
+
+  .cost-calculator__interior-option {
+    gap: 5px;
+  }
+
+  .cost-calculator__nav {
+    right: 10px;
+  }
+
+  .footer {
+    padding: 24px 15px;
+  }
+}
