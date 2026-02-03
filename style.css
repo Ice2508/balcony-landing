@@ -180,6 +180,18 @@ button:active:not(:disabled) {
   width: 100%;
   background-color: whitesmoke;
   padding: 35px 30px;
+  animation: popupAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes popupAppear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85) translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) translateY(0);
+  }
 }
 
 .form-close {
@@ -833,10 +845,6 @@ button:active:not(:disabled) {
   background-color: white;
 }
 
-.footer__nav-item:hover::before {
-  opacity: 1;
-}
-
 .footer__message {
   display: flex;
   gap: 10px;
@@ -849,6 +857,12 @@ button:active:not(:disabled) {
 }
 
 /*медиазапросы*/
+
+@media (hover: hover) and (pointer: fine) {
+  .footer__nav-item:hover::before {
+    opacity: 1;
+  }
+}
 
 @media (max-width: 1180px) {
    .site-section {
@@ -1038,6 +1052,7 @@ button:active:not(:disabled) {
     flex-direction: column;
     margin-top: 30px;
     align-items: flex-start;
+    gap: 16px;
   }
 
   .cost-calculator__size-input-wrap {
@@ -1286,11 +1301,11 @@ button:active:not(:disabled) {
   }
 
   .cost-calculator__type-img-wrap {
-    height: 100px;
+    height: 99px;
   }
 
   .cost-calculator__content {
-    min-height: 672px;
+    min-height: 658px;
     font-size: 14px;
     padding: 20px 15px;
   }

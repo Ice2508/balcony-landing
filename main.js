@@ -600,6 +600,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (headerForm) {
             headerForm.classList.add('form-site');
             headerForm.style.display = 'flex';
+            headerForm.classList.add('visible');
         }
            
         calcRefs.headerPopupOverlay?.classList.add('header-popup__overlay--active');
