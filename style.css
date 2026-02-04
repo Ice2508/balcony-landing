@@ -35,6 +35,10 @@ h3 {
     color: #343431;
 }
 
+dialog {
+    all: unset;     
+}
+
 ul, figure {
   margin: 0;
   padding: 0;
