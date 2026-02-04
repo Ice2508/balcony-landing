@@ -180,8 +180,8 @@ function getEstimateFormHTML(hidden = true) {
       <form class="cost-calculator__estimat-form"${style}>
         <button type="button" class="form-close">×</button>
         <input type="hidden" name="access_key" value="4abdbaac-cf19-47b2-a882-f05931f786fe">
-        <input type="text" class="cost-calculator__estimat-input" placeholder="введите ваше имя">
-        <input type="text" class="cost-calculator__estimat-input" placeholder="ваш email или номер телефона">
+        <input type="text" class="cost-calculator__estimat-input" autocomplete="name" placeholder="введите ваше имя">
+        <input type="text" class="cost-calculator__estimat-input" autocomplete="on" placeholder="ваш email или номер телефона">
         <textarea class="cost-calculator__estimat-textarea" placeholder="примечание..."></textarea>
         <button type="submit" class="submit-btn">Оставить заявку</button>
       </form>
