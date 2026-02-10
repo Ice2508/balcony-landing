@@ -445,16 +445,15 @@ async function sendFormJson(apiInfo, closeBtn, formSubmit, state) {
 function showPopupOk(closeBtn, formSubmit, state) {
     calcRefs.popupResponseOkIcon.style.backgroundImage = "url('img/popup-icon.png')";
     closeBtn.addEventListener('click', () => {
+      setTimeout(() => {
         calcRefs.popupOverlay.classList.remove('popup-response-ok__overlay--active');
-        setTimeout(() => {
         document.body.style.overflow = '';    
-    }, 1200)
-        
         formSubmit.reset();
         formSubmit.classList.remove('form-site');
         sessionStorage.removeItem('state');
         resetState();
         goToStep(1);
+      }, 500)
     }, { once: true });
 }
 
