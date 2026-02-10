@@ -453,7 +453,7 @@ function showPopupOk(closeBtn, formSubmit, state) {
         sessionStorage.removeItem('state');
         resetState();
         goToStep(1);
-      }, 500)
+      }, 300)
     }, { once: true });
 }
 
@@ -465,8 +465,10 @@ function showPopupError(title, subtitle) {
     calcRefs.popupSubtitle.textContent = subtitle;
 
     calcRefs.closeBtn.addEventListener('click', () => {
+      setTimeout(() => {
         calcRefs.popupOverlay.classList.remove('popup-response-ok__overlay--active');
         document.body.style.overflow = '';
+      }, 300);
     }, { once: true });
 }
 
