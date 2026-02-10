@@ -446,7 +446,10 @@ function showPopupOk(closeBtn, formSubmit, state) {
     calcRefs.popupResponseOkIcon.style.backgroundImage = "url('img/popup-icon.png')";
     closeBtn.addEventListener('click', () => {
         calcRefs.popupOverlay.classList.remove('popup-response-ok__overlay--active');
-        document.body.style.overflow = '';
+        setTimeout(() => {
+        document.body.style.overflow = '';    
+    }, 1200)
+        
         formSubmit.reset();
         formSubmit.classList.remove('form-site');
         sessionStorage.removeItem('state');
